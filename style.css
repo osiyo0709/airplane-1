@@ -1,0 +1,127 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    overflow: hidden;
+}
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #5894c5;
+}
+section .yol{
+    position: relative;
+    width: 500px;
+    height: 100vh;
+    background: rgb(57, 63, 75);
+    border-left: 20px solid rgba(0, 0, 0, 0.25);
+    border-right: 20px solid rgba(0, 0, 0, 0.25);
+    transition: transform 1s;
+    transition-delay: 1s;
+    transform-origin: top;
+}
+section .yol::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 100%;
+    background: white;
+    background: repeating-linear-gradient(transparent 0%,
+    #fff 50%,#fff 100%);
+    background-size: 20px 320px;
+    animation:  animyol 0.5s linear infinite;
+}
+section:active .yol{
+    transform: scaleX(0.7) scaleY(0);
+    transition-delay: 0s;
+    transform-origin: bottom;
+}
+section:active .yol::before{
+    transition: animyol 0.25s linear infinite;
+}
+@keyframes animyol{
+    0%{
+        background-position-y: 0px;
+    }
+    100%{
+        background-position-y: 640px;
+    }
+}
+.airplane{
+    position: absolute;
+    bottom: 100px;
+    max-width: 250px;
+    pointer-events: none;
+    filter: drop-shadow(10px 10px 0 rgba(0,0,0,0.5));
+    transition: 5s;
+}
+section:active .airplane{
+    max-width: 500px;
+    filter: drop-shadow(200px 200px 0 #5894c5);
+}
+.cloud{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 2s;
+    transition-delay: 0s;
+}
+section:active .cloud{
+    opacity: 1;
+    transition-delay: 1s;
+}
+.cloud img{
+    position: absolute;
+    left: 0;
+    width: 1200px;
+    animation: animatecloud 4s linear infinite;
+    animation-delay: calc(-1.5s * var(--i));
+}
+.cloud2{
+    right: 0;
+    transform: rotate(180deg);
+}
+.cloud2 img{
+    animation: animatecloud2 4s linear infinite;
+    animation-delay: calc(-1.5s * var(--i));
+    width: 1200px;
+}
+@keyframes animatecloud {
+    0%{
+        transform: translateY(-100%);
+    }
+    100%{
+        transform: translateY(100%);
+    }
+}
+@keyframes animatecloud2 {
+    0%{
+        transform: translateY(100%);
+    }
+    100%{
+        transform: translateY(-100%);
+    }
+
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
